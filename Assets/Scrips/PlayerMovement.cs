@@ -39,6 +39,10 @@ public class PlayerMovement : MonoBehaviour
         {
             moveVector.y = 1;
         }
-        transform.position += moveVector.normalized * Time.deltaTime * speed;
+        if (moveVector != Vector3.zero)
+        {
+            transform.position += moveVector.normalized * Time.deltaTime * speed;
+            //transform.rotation = Quaternion.Euler(0, 0, Vector3.Angle(new Vector3(1, 0), moveVector));
+        }
     }
 }
