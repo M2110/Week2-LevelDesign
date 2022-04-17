@@ -7,8 +7,8 @@ public class Player2Movement : MonoBehaviour
 
     SpriteRenderer sr;
     [SerializeField] float speed = 8f;
-    //public GameObject fire;
-    //bool isFireGrowing = true;
+    [SerializeField] GameObject fire;
+    bool isFireGrowing = true;
 
     // Start is called before the first frame update
     void Awake()
@@ -45,22 +45,20 @@ public class Player2Movement : MonoBehaviour
         {
             transform.position += moveVector.normalized * Time.deltaTime * speed;
             transform.rotation = Quaternion.Euler(0, 0, Vector3.SignedAngle(new Vector3(1, 0), moveVector, new Vector3(0,0,1)));
-            //if (fire.transform.position.x > -0.3)
-            //{
-            //    isFireGrowing = true;
-            //}
-            //else if ( fire.transform.position.x < -0.7)
-            //{
-            //    isFireGrowing = false;
-            //}
-            //if (isFireGrowing)
-            //{
-            //    fire.transform.position += new Vector3(0.1f * Time.deltaTime, 0, 0);
-            //}
-            //else
-            //{
-            //    fire.transform.position += new Vector3(-0.1f * Time.deltaTime, 0, 0);
-            //}
+            
+            if (fire.transform.localScale.x < 1.2f || fire.transform.localScale.x > 3.0f)
+            {
+                isFireGrowing = !isFireGrowing;  
+                
+            }
+            if (isFireGrowing)
+            {
+                fire.transform.localScale += new Vector3(1.5f * Time.deltaTime, 0 ,0);
+            }
+            else
+            {
+                fire.transform.localScale += new Vector3(-1.5f * Time.deltaTime, 0, 0);
+            }
         }
     }
 }
