@@ -22,7 +22,7 @@ public class Player1Movement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Vector3 moveVector = Vector3.zero;
+        Vector3 moveVector = Vector3.zero; //Get movement vector from input
         if (Input.GetKey(KeyCode.A))
         {
             moveVector.x = -1;
@@ -41,9 +41,8 @@ public class Player1Movement : MonoBehaviour
         }
         if (moveVector != Vector3.zero)
         {
-            transform.position += moveVector.normalized * Time.deltaTime * speed;
-            transform.rotation = Quaternion.Euler(0, 0, Vector3.SignedAngle(new Vector3(1, 0), moveVector, new Vector3(0, 0, 1)));
-            //transform.rotation = Quaternion.Euler(0, 0, Vector3.Angle(new Vector3(1, 0), moveVector));
+            transform.position += moveVector.normalized * Time.deltaTime * speed; //Move spaceship
+            transform.rotation = Quaternion.Euler(0, 0, Vector3.SignedAngle(new Vector3(1, 0), moveVector, new Vector3(0, 0, 1))); //Rotate spceship according to flight direction
         }
     }
 }
