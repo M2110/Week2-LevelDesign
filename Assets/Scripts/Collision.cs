@@ -13,7 +13,7 @@ public class Collision : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     void OnCollisionEnter2D(Collision2D collision)
@@ -21,6 +21,10 @@ public class Collision : MonoBehaviour
         if (collision.gameObject.name.Contains("Player"))
         {
             Debug.Log("The other player catched you. Game over.");
+        }
+        else
+        { 
+            Debug.Log($"{name} crashed. Game over.");
         }
     }
 }
