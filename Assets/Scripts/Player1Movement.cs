@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMovement : MonoBehaviour
+public class Player1Movement : MonoBehaviour
 {
 
     SpriteRenderer sr;
@@ -42,6 +42,7 @@ public class PlayerMovement : MonoBehaviour
         if (moveVector != Vector3.zero)
         {
             transform.position += moveVector.normalized * Time.deltaTime * speed;
+            transform.rotation = Quaternion.Euler(0, 0, Vector3.SignedAngle(new Vector3(1, 0), moveVector, new Vector3(0, 0, 1)));
             //transform.rotation = Quaternion.Euler(0, 0, Vector3.Angle(new Vector3(1, 0), moveVector));
         }
     }
