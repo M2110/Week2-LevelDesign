@@ -24,7 +24,7 @@ public class Player2Movement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Vector3 moveVector = Vector3.zero;
+        Vector3 moveVector = Vector3.zero; //Get movement vector from input
         if (Input.GetKey(KeyCode.LeftArrow))
         {
             moveVector.x = -1;
@@ -43,13 +43,16 @@ public class Player2Movement : MonoBehaviour
         }
         if (moveVector != Vector3.zero)
         {
-            transform.position += moveVector.normalized * Time.deltaTime * speed;
-            transform.rotation = Quaternion.Euler(0, 0, Vector3.SignedAngle(new Vector3(1, 0), moveVector, new Vector3(0,0,1)));
-            
-            if (fire.transform.localScale.x < 1.2f || fire.transform.localScale.x > 3.0f)
+            transform.position += moveVector.normalized * Time.deltaTime * speed; //Move spaceship
+            transform.rotation = Quaternion.Euler(0, 0, Vector3.SignedAngle(new Vector3(1, 0), moveVector, new Vector3(0,0,1))); //rotate spaceship
+            // Animate fire
+            if (fire.transform.localScale.x < 1.2f ) 
             {
-                isFireGrowing = !isFireGrowing;  
-                
+                isFireGrowing = true; 
+            }
+            else if(fire.transform.localScale.x > 2.7f)
+            {
+                isFireGrowing = false;
             }
             if (isFireGrowing)
             {
